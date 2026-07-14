@@ -40,4 +40,13 @@ A **cloud web app** you open on phone, tablet, or clinic PC:
 ## Timeline
 
 **About 8–12 weeks** (discovery → build → training → go-live)
+
 ---
+
+## Open the wireframes (live site)
+
+GitHub’s repo page shows this README. The clickable prototype is on **GitHub Pages**:
+
+**https://degarushiya.github.io/DT-Smile/**
+
+That opens the wireframe app (not the README).
