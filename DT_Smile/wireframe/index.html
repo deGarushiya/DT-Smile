@@ -75,6 +75,12 @@
       gap: 12px;
       align-items: center;
     }
+    .docs-download {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
     .btn-docs {
       border: 1px solid rgba(255, 255, 255, 0.55);
       background: rgba(255, 255, 255, 0.12);
@@ -492,9 +498,14 @@
       <p>Low-fi clickable prototype · Doc Shelay + Reception · Not a live system</p>
     </div>
     <div class="topbar-actions">
-      <button type="button" class="btn-docs" id="btnDownloadDocs" onclick="downloadDocumentation()" title="Download both Word docs as a ZIP">
-        Download documentation
-      </button>
+      <div class="docs-download">
+        <button type="button" class="btn-docs" id="btnDocOverview" onclick="downloadDoc('overview')" title="Download Word file: Proposal Overview">
+          Download Proposal (.docx)
+        </button>
+        <button type="button" class="btn-docs" id="btnDocSpec" onclick="downloadDoc('spec')" title="Download Word file: System Specification">
+          Download Spec (.docx)
+        </button>
+      </div>
       <div class="role-toggle">
         <span>View as:</span>
         <button type="button" id="roleDentist" class="active" onclick="setRole('dentist')">Dentist</button>
@@ -919,9 +930,19 @@ DT Smile Dental Clinic</textarea>
   <script>
     let role = 'dentist';
 
-    const DOC_ZIP = {
-      path: '../documentation/DT-Smile-Documentation.zip',
-      filename: 'DT-Smile-Documentation.zip'
+    const DOC_FILES = {
+      overview: {
+        path: '../documentation/01-DT-Smile-Proposal-Overview.docx',
+        filename: '01-DT-Smile-Proposal-Overview.docx',
+        btnId: 'btnDocOverview',
+        label: 'Download Proposal (.docx)'
+      },
+      spec: {
+        path: '../documentation/02-DT-Smile-System-Specification.docx',
+        filename: '02-DT-Smile-System-Specification.docx',
+        btnId: 'btnDocSpec',
+        label: 'Download Spec (.docx)'
+      }
     };
 
     function triggerFileDownload(blob, filename) {
@@ -938,29 +959,29 @@ DT Smile Dental Clinic</textarea>
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
 
-    async function downloadDocumentation() {
-      const btn = document.getElementById('btnDownloadDocs');
+    async function downloadDoc(key) {
+      const doc = DOC_FILES[key];
+      if (!doc) return;
+
+      const btn = document.getElementById(doc.btnId);
       btn.disabled = true;
       btn.textContent = 'Downloading…';
 
       try {
-        const res = await fetch(DOC_ZIP.path, { cache: 'no-store' });
+        const res = await fetch(doc.path, { cache: 'no-store' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const blob = await res.blob();
-        triggerFileDownload(blob, DOC_ZIP.filename);
+        triggerFileDownload(blob, doc.filename);
       } catch (err) {
-        console.error('Download failed:', DOC_ZIP.filename, err);
+        console.error('Download failed:', doc.filename, err);
         alert(
-          'Could not download documentation.\n\n' +
-          'Use the live site (degarushiya.github.io/DT-Smile), then try again.\n\n' +
-          'Zip includes:\n' +
-          '• 01-DT-Smile-Proposal-Overview.docx\n' +
-          '• 02-DT-Smile-System-Specification.docx'
+          'Could not download ' + doc.filename + '.\n\n' +
+          'Open the live site (degarushiya.github.io/DT-Smile) and try again.'
         );
       }
 
       btn.disabled = false;
-      btn.textContent = 'Download documentation';
+      btn.textContent = doc.label;
     }
 
     function setRole(r) {
