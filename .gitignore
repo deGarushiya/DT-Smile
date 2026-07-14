@@ -1,5 +1,6 @@
 # Local archives (folder already tracked)
 *.zip
+!DT_Smile/documentation/DT-Smile-Documentation.zip
 Thumbs.db
 Desktop.ini
 .DS_Store
