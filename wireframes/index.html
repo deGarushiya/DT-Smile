@@ -405,6 +405,60 @@
 
     .wf-only { font-size: 11px; color: var(--muted); font-style: italic; }
     a.linkish { color: var(--accent); cursor: pointer; text-decoration: underline; }
+
+    .login-logo {
+      display: block;
+      height: 72px;
+      width: auto;
+      margin: 0 auto 14px;
+    }
+    .text-center { text-align: center; }
+    .mb-8 { margin-bottom: 8px; }
+    .mb-10 { margin-bottom: 10px; }
+    .mb-14 { margin-bottom: 14px; }
+    .mt-8 { margin-top: 8px; }
+    .mt-10 { margin-top: 10px; }
+    .mt-12 { margin-top: 12px; }
+    .mt-14 { margin-top: 14px; }
+    .btn-block { width: 100%; }
+    .section-h { font-size: 14px; margin: 0 0 8px; }
+    .section-h-md { font-size: 14px; margin: 16px 0 8px; }
+    .section-h-lg { font-size: 15px; margin: 16px 0 8px; }
+    .section-h-sm { font-size: 13px; margin: 0; }
+    .muted-cell { color: #888; }
+    .row-flush { margin: 0; }
+    .table-spaced { margin: 12px 0; }
+    .num { text-align: right; }
+    .reception-block {
+      display: none;
+      padding: 20px;
+      border: 1px dashed var(--line);
+      text-align: center;
+    }
+    .reception-block.is-visible { display: block; }
+    .is-hidden { display: none !important; }
+    .check-row {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .check-row.spaced { margin-bottom: 12px; }
+    .check-row-sm {
+      font-size: 12px;
+      display: block;
+      margin-top: 8px;
+    }
+    .select-auto { width: auto; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
   </style>
 </head>
 <body>
@@ -462,19 +516,19 @@
         <!-- LOGIN -->
         <section class="screen active" id="screen-login">
           <div class="login-wrap">
-            <img src="assets/dt-smile-logo.png" alt="DT Smile Dental Clinic" style="display:block;height:72px;width:auto;margin:0 auto 14px" />
-            <h2 style="text-align:center">Sign in</h2>
-            <div class="sub" style="text-align:center">DT Smile Dental Clinic · Doc Shelay</div>
-            <div class="field" style="margin-bottom:10px">
-              <label>Email</label>
-              <input type="text" value="docshelay@dtsmile.ph" readonly />
+            <img class="login-logo" src="assets/dt-smile-logo.png" alt="DT Smile Dental Clinic" />
+            <h2 class="text-center">Sign in</h2>
+            <div class="sub text-center">DT Smile Dental Clinic · Doc Shelay</div>
+            <div class="field mb-10">
+              <label for="login-email">Email</label>
+              <input id="login-email" type="email" value="docshelay@dtsmile.ph" readonly autocomplete="username" />
             </div>
-            <div class="field" style="margin-bottom:14px">
-              <label>Password</label>
-              <input type="password" value="********" readonly />
+            <div class="field mb-14">
+              <label for="login-password">Password</label>
+              <input id="login-password" type="password" value="********" readonly autocomplete="current-password" />
             </div>
-            <button type="button" class="btn primary" style="width:100%" onclick="showScreen('dashboard')">Enter clinic</button>
-            <p class="wf-only" style="margin-top:12px">Wireframe only — no real authentication.</p>
+            <button type="button" class="btn primary btn-block" onclick="showScreen('dashboard')">Enter clinic</button>
+            <p class="wf-only mt-12">Wireframe only — no real authentication.</p>
           </div>
         </section>
 
@@ -490,7 +544,7 @@
             <div class="stat"><div class="n">3</div><div class="l">Pending pay</div></div>
             <div class="stat"><div class="n">1</div><div class="l">No-shows</div></div>
           </div>
-          <h3 style="font-size:14px;margin:0 0 8px">Today's schedule</h3>
+          <h3 class="section-h">Today's schedule</h3>
           <table>
             <thead>
               <tr><th>Time</th><th>Patient</th><th>Service</th><th>Chair</th><th>Status</th></tr>
@@ -510,7 +564,7 @@
               </tr>
               <tr>
                 <td>10:00</td>
-                <td colspan="2" style="color:#888">— free slot —</td>
+                <td colspan="2" class="muted-cell">— free slot —</td>
                 <td>1</td>
                 <td><button type="button" class="btn ghost" onclick="openBook()">Book</button></td>
               </tr>
@@ -522,7 +576,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="row" style="margin-top:14px">
+          <div class="row mt-14">
             <button type="button" class="btn" onclick="showScreen('patients')">+ New patient</button>
             <button type="button" class="btn" onclick="showScreen('billing')">Collect payment</button>
             <button type="button" class="btn" onclick="showScreen('reminders')">Send email reminder</button>
@@ -533,7 +587,7 @@
         <section class="screen" id="screen-appointments">
           <div class="screen-title">
             <h2>Appointments</h2>
-            <div class="row" style="margin:0">
+            <div class="row row-flush">
               <button type="button" class="btn">Day</button>
               <button type="button" class="btn primary">Week</button>
               <button type="button" class="btn">Month</button>
@@ -541,9 +595,9 @@
             </div>
           </div>
           <div class="row">
-            <div class="field"><label>Dentist</label><select><option>All</option><option>Doc Shelay</option></select></div>
-            <div class="field"><label>Chair</label><select><option>All</option><option>Chair 1</option></select></div>
-            <div class="field"><label>Status</label><select><option>All</option><option>Confirmed</option><option>Arrived</option></select></div>
+            <div class="field"><label for="fld-3">Dentist</label><select id="fld-3"><option>All</option><option>Doc Shelay</option></select></div>
+            <div class="field"><label for="fld-4">Chair</label><select id="fld-4"><option>All</option><option>Chair 1</option></select></div>
+            <div class="field"><label for="fld-5">Status</label><select id="fld-5"><option>All</option><option>Confirmed</option><option>Arrived</option></select></div>
           </div>
           <div class="calendar">
             <div class="h"></div>
@@ -573,7 +627,7 @@
             <button type="button" class="btn primary">+ New patient</button>
           </div>
           <input class="search" type="search" placeholder="Search name / phone / ID…" value="Santos" />
-          <table style="margin:12px 0">
+          <table class="table-spaced">
             <thead>
               <tr><th>Name</th><th>Phone</th><th>Last visit</th><th>Balance</th></tr>
             </thead>
@@ -593,7 +647,7 @@
             </tbody>
           </table>
 
-          <h3 style="font-size:15px;margin:16px 0 8px">Patient record — Maria Santos · 32F · P-1042</h3>
+          <h3 class="section-h-lg">Patient record — Maria Santos · 32F · P-1042</h3>
           <div class="tabs" id="patientTabs">
             <button type="button" class="on" data-tab="profile" onclick="switchTab(event,'profile')">Profile</button>
             <button type="button" data-tab="chart" onclick="switchTab(event,'chart')">Dental chart</button>
@@ -618,8 +672,8 @@
             <p class="note">Tooth 16: Composite filling (2025). Watch for secondary caries.</p>
           </div>
           <div class="tab-panel" id="tab-visits">
-            <div class="field"><label>Chief complaint</label><textarea readonly>Sensitivity on upper right when drinking cold water.</textarea></div>
-            <div class="field" style="margin-top:8px"><label>Treatment done / plan</label><textarea readonly>Exam + cleaning. Advised desensitizing toothpaste. Recheck in 6 months.</textarea></div>
+            <div class="field"><label for="fld-6">Chief complaint</label><textarea id="fld-6" readonly>Sensitivity on upper right when drinking cold water.</textarea></div>
+            <div class="field mt-8"><label for="fld-7">Treatment done / plan</label><textarea id="fld-7" readonly>Exam + cleaning. Advised desensitizing toothpaste. Recheck in 6 months.</textarea></div>
           </div>
           <div class="tab-panel" id="tab-files">
             <table>
@@ -627,7 +681,7 @@
               <tr><td>xray-16-2025.jpg</td><td>Nov 12, 2025</td><td><span class="badge">Spaces</span></td></tr>
               <tr><td>consent-cleaning.pdf</td><td>Jul 01, 2026</td><td><span class="badge">Spaces</span></td></tr>
             </table>
-            <button type="button" class="btn" style="margin-top:8px">Upload file…</button>
+            <button type="button" class="btn mt-8">Upload file…</button>
           </div>
           <div class="tab-panel" id="tab-patrx">
             <p>Amoxicillin 500mg TID × 7 days — Doc Shelay — Jul 01, 2026</p>
@@ -661,19 +715,19 @@
               </tr>
             </tbody>
           </table>
-          <h3 style="font-size:14px;margin:16px 0 8px">Invoice detail — INV-0890</h3>
+          <h3 class="section-h-md">Invoice detail — INV-0890</h3>
           <table>
-            <tr><td>Composite filling ×1</td><td style="text-align:right">₱3,500</td></tr>
-            <tr><td>Consultation</td><td style="text-align:right">₱500</td></tr>
-            <tr><td><strong>Total</strong></td><td style="text-align:right"><strong>₱4,000</strong></td></tr>
+            <tr><td>Composite filling ×1</td><td class="num">₱3,500</td></tr>
+            <tr><td>Consultation</td><td class="num">₱500</td></tr>
+            <tr><td><strong>Total</strong></td><td class="num"><strong>₱4,000</strong></td></tr>
           </table>
           <p class="note">Payments: GCash ₱2,500 (Jul 10, Ref: GC-99812). Balance <strong>₱1,500</strong>.</p>
           <div class="row">
-            <div class="field"><label>Record payment method</label>
-              <select><option>Cash</option><option selected>GCash</option><option>Bank transfer</option><option>Card</option></select>
+            <div class="field"><label for="pay-method">Record payment method</label>
+              <select id="pay-method"><option>Cash</option><option selected>GCash</option><option>Bank transfer</option><option>Card</option></select>
             </div>
-            <div class="field"><label>Amount (₱)</label><input value="1500" /></div>
-            <div class="field"><label>Reference #</label><input placeholder="Optional" /></div>
+            <div class="field"><label for="fld-8">Amount (₱)</label><input id="fld-8" value="1500" /></div>
+            <div class="field"><label for="fld-9">Reference #</label><input id="fld-9" placeholder="Optional" /></div>
           </div>
           <div class="row">
             <button type="button" class="btn primary">Record payment</button>
@@ -688,7 +742,7 @@
             <h2>New prescription</h2>
             <span class="badge dentist-only">Dentist only</span>
           </div>
-          <div class="reception-block" id="rxBlocked" style="display:none;padding:20px;border:1px dashed var(--line);text-align:center">
+          <div class="reception-block" id="rxBlocked">
             <p><strong>Reception cannot create or edit prescriptions.</strong></p>
             <p class="wf-only">Switch View as → Dentist to see this screen.</p>
           </div>
@@ -708,9 +762,9 @@
                 </tr>
               </tbody>
             </table>
-            <div class="field" style="margin-top:10px">
-              <label>Instructions</label>
-              <textarea>Take after meals. Complete the full course of antibiotics.</textarea>
+            <div class="field mt-10">
+              <label for="fld-1">Instructions</label>
+              <textarea id="fld-1">Take after meals. Complete the full course of antibiotics.</textarea>
             </div>
             <p>Prescriber: <strong>Doc Shelay</strong></p>
             <div class="row">
@@ -726,11 +780,11 @@
           <div class="screen-title">
             <h2>Appointment reminders</h2>
           </div>
-          <label style="display:block;margin-bottom:8px;font-size:13px"><input type="checkbox" checked /> Email — 48 hours before</label>
-          <label style="display:block;margin-bottom:12px;font-size:13px"><input type="checkbox" /> Same-day morning email</label>
+          <label class="check-row"><input type="checkbox" checked /> Email — 48 hours before</label>
+          <label class="check-row spaced"><input type="checkbox" /> Same-day morning email</label>
           <div class="field">
-            <label>Email template (Taglish)</label>
-            <textarea>Hi {name}!
+            <label for="fld-2">Email template (Taglish)</label>
+            <textarea id="fld-2">Hi {name}!
 
 Reminder: may dental appointment ka on {date} at {time} sa DT Smile Dental Clinic.
 
@@ -748,7 +802,8 @@ DT Smile Dental Clinic</textarea>
         <section class="screen" id="screen-reports">
           <div class="screen-title">
             <h2>Reports</h2>
-            <select style="width:auto"><option>This month</option><option>This week</option><option>Custom…</option></select>
+            <label class="sr-only" for="report-period">Period</label>
+            <select id="report-period" class="select-auto"><option>This month</option><option>This week</option><option>Custom…</option></select>
           </div>
           <div class="stats">
             <div class="stat"><div class="n">142</div><div class="l">Patients seen</div></div>
@@ -758,7 +813,7 @@ DT Smile Dental Clinic</textarea>
           </div>
           <div class="split">
             <div>
-              <h3 style="font-size:13px">Revenue by service</h3>
+              <h3 class="section-h-sm">Revenue by service</h3>
               <table>
                 <tr><td>Cleaning</td><td>₱62,000</td></tr>
                 <tr><td>Filling</td><td>₱71,000</td></tr>
@@ -767,7 +822,7 @@ DT Smile Dental Clinic</textarea>
               </table>
             </div>
             <div>
-              <h3 style="font-size:13px">Outstanding balances</h3>
+              <h3 class="section-h-sm">Outstanding balances</h3>
               <table>
                 <tr><td>J. Dela Cruz</td><td>₱1,500</td></tr>
                 <tr><td>L. Gomez</td><td>₱800</td></tr>
@@ -775,7 +830,7 @@ DT Smile Dental Clinic</textarea>
               </table>
             </div>
           </div>
-          <div class="row" style="margin-top:12px">
+          <div class="row mt-12">
             <button type="button" class="btn">Export CSV</button>
             <button type="button" class="btn">Export PDF</button>
           </div>
@@ -787,7 +842,7 @@ DT Smile Dental Clinic</textarea>
             <h2>Users &amp; access</h2>
             <span class="badge">Dentist only</span>
           </div>
-          <div class="reception-block" id="usersBlocked" style="display:none;padding:20px;border:1px dashed var(--line);text-align:center">
+          <div class="reception-block" id="usersBlocked">
             <p><strong>Only the dentist/admin can manage users.</strong></p>
           </div>
           <div id="usersForm">
@@ -798,7 +853,7 @@ DT Smile Dental Clinic</textarea>
                 <tr><td>Mia Lopez</td><td>mia@dtsmile.ph</td><td>Reception</td><td><span class="badge ok">Active</span></td></tr>
               </tbody>
             </table>
-            <button type="button" class="btn primary" style="margin-top:12px">+ Invite user</button>
+            <button type="button" class="btn primary mt-12">+ Invite user</button>
             <p class="note">Reception: appointments, patients, billing. No Rx edit, no user admin.</p>
           </div>
         </section>
@@ -810,21 +865,21 @@ DT Smile Dental Clinic</textarea>
   <div class="modal-backdrop" id="bookModal" onclick="backdropClose(event)">
     <div class="modal" role="dialog" aria-labelledby="bookTitle">
       <h3 id="bookTitle">Book appointment</h3>
-      <div class="field" style="margin-bottom:8px"><label>Patient</label><input value="Search / New patient…" /></div>
+      <div class="field mb-8"><label for="fld-10">Patient</label><input id="fld-10" value="Search / New patient…" /></div>
       <div class="row">
-        <div class="field"><label>Date</label><input value="2026-07-11" /></div>
-        <div class="field"><label>Time</label><input value="10:00" /></div>
+        <div class="field"><label for="fld-11">Date</label><input id="fld-11" value="2026-07-11" /></div>
+        <div class="field"><label for="fld-12">Time</label><input id="fld-12" value="10:00" /></div>
       </div>
       <div class="row">
-        <div class="field"><label>Dentist</label><select><option>Doc Shelay</option></select></div>
-        <div class="field"><label>Chair</label><select><option>Chair 1</option></select></div>
+        <div class="field"><label for="fld-13">Dentist</label><select id="fld-13"><option>Doc Shelay</option></select></div>
+        <div class="field"><label for="fld-14">Chair</label><select id="fld-14"><option>Chair 1</option></select></div>
       </div>
       <div class="row">
-        <div class="field"><label>Service</label><select><option>Cleaning</option><option>Filling</option><option>Consultation</option></select></div>
+        <div class="field"><label for="fld-15">Service</label><select id="fld-15"><option>Cleaning</option><option>Filling</option><option>Consultation</option></select></div>
         <div class="field"><label>Duration</label><div class="box">30 min</div></div>
       </div>
-      <div class="field"><label>Notes</label><textarea placeholder="Optional"></textarea></div>
-      <label style="font-size:12px;display:block;margin-top:8px"><input type="checkbox" checked /> Notify via Email</label>
+      <div class="field"><label for="fld-16">Notes</label><textarea id="fld-16" placeholder="Optional"></textarea></div>
+      <label class="check-row-sm"><input type="checkbox" checked /> Notify via Email</label>
       <div class="modal-actions">
         <button type="button" class="btn" onclick="closeBook()">Cancel</button>
         <button type="button" class="btn primary" onclick="closeBook()">Save</button>
@@ -847,10 +902,10 @@ DT Smile Dental Clinic</textarea>
       document.getElementById('navUsersLink').style.display = dentistOnly ? '' : 'none';
       document.getElementById('navRxLink').style.opacity = dentistOnly ? '1' : '0.45';
 
-      document.getElementById('rxBlocked').style.display = dentistOnly ? 'none' : 'block';
-      document.getElementById('rxForm').style.display = dentistOnly ? 'block' : 'none';
-      document.getElementById('usersBlocked').style.display = dentistOnly ? 'none' : 'block';
-      document.getElementById('usersForm').style.display = dentistOnly ? 'block' : 'none';
+      document.getElementById('rxBlocked').classList.toggle('is-visible', !dentistOnly);
+      document.getElementById('rxForm').classList.toggle('is-hidden', !dentistOnly);
+      document.getElementById('usersBlocked').classList.toggle('is-visible', !dentistOnly);
+      document.getElementById('usersForm').classList.toggle('is-hidden', !dentistOnly);
 
       document.querySelectorAll('.dentist-only').forEach(el => {
         el.style.display = dentistOnly ? '' : 'none';
