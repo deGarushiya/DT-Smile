@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DT Smile Dental Clinic — Wireframes</title>
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --muted: #5c5c5c;
+      --line: #c8c8c8;
+      --bg: #f3f3f3;
+      --paper: #ffffff;
+      --accent: #1b5e3b;
+      --accent-soft: #e6f2eb;
+      --brand-red: #e31c23;
+      --warn: #8a5a00;
+      --chip: #ececec;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .topbar {
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .topbar h1 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .topbar p {
+      margin: 0;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .role-toggle {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 12px;
+    }
+    .role-toggle button {
+      border: 1px solid #666;
+      background: #333;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .role-toggle button.active {
+      background: var(--brand-red);
+      border-color: var(--brand-red);
+    }
+    .topbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-docs {
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 7px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .btn-docs:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+    .btn-docs:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      min-height: calc(100vh - 52px);
+    }
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidenav { display: flex; flex-wrap: wrap; gap: 6px; border-right: none; border-bottom: 1px solid var(--line); }
+      .sidenav button { flex: 1 1 auto; text-align: center; }
+    }
+
+    .sidenav {
+      background: var(--paper);
+      border-right: 1px solid var(--line);
+      padding: 12px;
+    }
+    .sidenav .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .sidenav button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .sidenav button.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 600;
+    }
+    .sidenav button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .stage {
+      padding: 16px;
+    }
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+
+    .phone-frame {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .app-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: #fafafa;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--accent);
+    }
+    .brand img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .brand .name-stack {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .brand .name-stack span:last-child {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--brand-red);
+      text-transform: uppercase;
+    }
+    .app-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .app-nav a {
+      font-size: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+    }
+    .app-nav a:hover { background: var(--chip); }
+    .app-nav a.on {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 600;
+    }
+    .user-chip {
+      font-size: 12px;
+      background: var(--chip);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    .screen { display: none; padding: 14px; }
+    .screen.active { display: block; }
+
+    .screen-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .screen-title h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .btn {
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      padding: 7px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .btn.ghost { border-style: dashed; color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 700px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat {
+      border: 1px solid var(--line);
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .stat .n { font-size: 22px; font-weight: 700; }
+    .stat .l { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+
+    .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .field {
+      flex: 1 1 140px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+    .field label { color: var(--muted); }
+    .field .box, .search, input, select, textarea {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 8px;
+      background: #fff;
+      font: inherit;
+      width: 100%;
+    }
+    textarea { min-height: 70px; resize: vertical; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 8px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--chip);
+    }
+    .badge.ok { background: #d8f0e2; }
+    .badge.warn { background: #ffe6b8; color: var(--warn); }
+    .badge.bad { background: #f8d4d4; }
+
+    .tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+    .tabs button {
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 6px 10px;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .tabs button.on {
+      border-bottom-color: #fff;
+      background: var(--accent-soft);
+      font-weight: 600;
+    }
+    .tab-panel { display: none; border: 1px solid var(--line); padding: 12px; border-radius: 0 4px 4px 4px; }
+    .tab-panel.on { display: block; }
+
+    .odontogram {
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+    .odontogram span {
+      display: inline-block;
+      min-width: 28px;
+      text-align: center;
+      border: 1px solid var(--line);
+      margin: 1px;
+      padding: 2px 0;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .odontogram span.marked {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: 56px repeat(6, 1fr);
+      gap: 4px;
+      font-size: 12px;
+      overflow-x: auto;
+    }
+    .calendar .h {
+      font-weight: 600;
+      text-align: center;
+      padding: 6px;
+      background: var(--chip);
+      border-radius: 4px;
+    }
+    .calendar .t { color: var(--muted); padding: 6px 4px; }
+    .slot {
+      border: 1px dashed var(--line);
+      min-height: 42px;
+      border-radius: 4px;
+      padding: 4px;
+      background: #fafafa;
+    }
+    .slot.busy {
+      border-style: solid;
+      background: var(--accent-soft);
+      cursor: pointer;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 30;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      max-width: 420px;
+      width: 100%;
+      padding: 14px;
+    }
+    .modal h3 { margin: 0 0 10px; font-size: 16px; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+
+    .login-wrap {
+      max-width: 360px;
+      margin: 40px auto;
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      padding: 20px;
+      background: #fff;
+    }
+    .login-wrap h2 { margin: 0 0 4px; }
+    .login-wrap .sub { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px) {
+      .split { grid-template-columns: 1fr; }
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+      margin: 10px 0;
+    }
+
+    .wf-only { font-size: 11px; color: var(--muted); font-style: italic; }
+    a.linkish { color: var(--accent); cursor: pointer; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div>
+      <h1>Wireframes — DT Smile Dental Clinic</h1>
+      <p>Low-fi clickable prototype · Doc Shelay + Reception · Not a live system</p>
+    </div>
+    <div class="topbar-actions">
+      <button type="button" class="btn-docs" id="btnDownloadDocs" onclick="downloadDocumentation()" title="Save system specification and budget proposal to your device">
+        Download documentation
+      </button>
+      <div class="role-toggle">
+        <span>View as:</span>
+        <button type="button" id="roleDentist" class="active" onclick="setRole('dentist')">Dentist</button>
+        <button type="button" id="roleReception" onclick="setRole('reception')">Reception</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="sidenav">
+      <p class="label">Screens</p>
+      <button type="button" data-screen="login" class="active" onclick="showScreen('login')">1. Login</button>
+      <button type="button" data-screen="dashboard" onclick="showScreen('dashboard')">2. Dashboard</button>
+      <button type="button" data-screen="appointments" onclick="showScreen('appointments')">3. Appointments</button>
+      <button type="button" data-screen="patients" onclick="showScreen('patients')">4. Patients / EPR</button>
+      <button type="button" data-screen="billing" onclick="showScreen('billing')">5. Billing</button>
+      <button type="button" data-screen="rx" onclick="showScreen('rx')">6. Prescriptions</button>
+      <button type="button" data-screen="reminders" onclick="showScreen('reminders')">7. Reminders</button>
+      <button type="button" data-screen="reports" onclick="showScreen('reports')">8. Reports</button>
+      <button type="button" data-screen="users" id="navUsers" onclick="showScreen('users')">9. Users</button>
+    </nav>
+
+    <main class="stage">
+      <p class="hint">Tip: use the left menu or in-app nav. Toggle Dentist / Reception to see role differences (Users &amp; Rx restricted for Reception).</p>
+
+      <div class="phone-frame">
+        <div class="app-header" id="appChrome">
+          <div class="brand">
+            <img src="assets/dt-smile-logo.png" alt="DT Smile Dental Clinic" />
+            <div class="name-stack">
+              <span>DT Smile</span>
+              <span>Dental Clinic</span>
+            </div>
+          </div>
+          <div class="app-nav" id="appNav">
+            <a href="#" class="nav-dash" onclick="return go('dashboard')">Dashboard</a>
+            <a href="#" class="nav-appt" onclick="return go('appointments')">Appointments</a>
+            <a href="#" class="nav-pat" onclick="return go('patients')">Patients</a>
+            <a href="#" class="nav-bill" onclick="return go('billing')">Billing</a>
+            <a href="#" class="nav-rx" id="navRxLink" onclick="return go('rx')">Rx</a>
+            <a href="#" class="nav-rep" onclick="return go('reports')">Reports</a>
+            <a href="#" class="nav-rem" onclick="return go('reminders')">Reminders</a>
+            <a href="#" class="nav-usr" id="navUsersLink" onclick="return go('users')">Users</a>
+          </div>
+          <div class="user-chip" id="userChip">Doc Shelay (Dentist)</div>
+        </div>
+
+        <!-- LOGIN -->
+        <section class="screen active" id="screen-login">
+          <div class="login-wrap">
+            <img src="assets/dt-smile-logo.png" alt="DT Smile Dental Clinic" style="display:block;height:72px;width:auto;margin:0 auto 14px" />
+            <h2 style="text-align:center">Sign in</h2>
+            <div class="sub" style="text-align:center">DT Smile Dental Clinic · Doc Shelay</div>
+            <div class="field" style="margin-bottom:10px">
+              <label>Email</label>
+              <input type="text" value="docshelay@dtsmile.ph" readonly />
+            </div>
+            <div class="field" style="margin-bottom:14px">
+              <label>Password</label>
+              <input type="password" value="********" readonly />
+            </div>
+            <button type="button" class="btn primary" style="width:100%" onclick="showScreen('dashboard')">Enter clinic</button>
+            <p class="wf-only" style="margin-top:12px">Wireframe only — no real authentication.</p>
+          </div>
+        </section>
+
+        <!-- DASHBOARD -->
+        <section class="screen" id="screen-dashboard">
+          <div class="screen-title">
+            <h2>Today — Sat, Jul 11, 2026</h2>
+            <button type="button" class="btn primary" onclick="openBook()">+ New appointment</button>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="n">18</div><div class="l">Appointments</div></div>
+            <div class="stat"><div class="n">6</div><div class="l">Checked-in</div></div>
+            <div class="stat"><div class="n">3</div><div class="l">Pending pay</div></div>
+            <div class="stat"><div class="n">1</div><div class="l">No-shows</div></div>
+          </div>
+          <h3 style="font-size:14px;margin:0 0 8px">Today's schedule</h3>
+          <table>
+            <thead>
+              <tr><th>Time</th><th>Patient</th><th>Service</th><th>Chair</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>09:00</td>
+                <td><a class="linkish" onclick="showScreen('patients')">Maria Santos</a></td>
+                <td>Cleaning</td><td>1</td>
+                <td><span class="badge ok">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>09:30</td>
+                <td>Juan Dela Cruz</td>
+                <td>Filling</td><td>1</td>
+                <td><span class="badge">Arrived</span></td>
+              </tr>
+              <tr>
+                <td>10:00</td>
+                <td colspan="2" style="color:#888">— free slot —</td>
+                <td>1</td>
+                <td><button type="button" class="btn ghost" onclick="openBook()">Book</button></td>
+              </tr>
+              <tr>
+                <td>10:30</td>
+                <td>Ana Reyes</td>
+                <td>Consultation</td><td>1</td>
+                <td><span class="badge warn">Pending pay</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row" style="margin-top:14px">
+            <button type="button" class="btn" onclick="showScreen('patients')">+ New patient</button>
+            <button type="button" class="btn" onclick="showScreen('billing')">Collect payment</button>
+            <button type="button" class="btn" onclick="showScreen('reminders')">Send email reminder</button>
+          </div>
+        </section>
+
+        <!-- APPOINTMENTS -->
+        <section class="screen" id="screen-appointments">
+          <div class="screen-title">
+            <h2>Appointments</h2>
+            <div class="row" style="margin:0">
+              <button type="button" class="btn">Day</button>
+              <button type="button" class="btn primary">Week</button>
+              <button type="button" class="btn">Month</button>
+              <button type="button" class="btn primary" onclick="openBook()">+ Book</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><label>Dentist</label><select><option>All</option><option>Doc Shelay</option></select></div>
+            <div class="field"><label>Chair</label><select><option>All</option><option>Chair 1</option></select></div>
+            <div class="field"><label>Status</label><select><option>All</option><option>Confirmed</option><option>Arrived</option></select></div>
+          </div>
+          <div class="calendar">
+            <div class="h"></div>
+            <div class="h">Mon</div><div class="h">Tue</div><div class="h">Wed</div><div class="h">Thu</div><div class="h">Fri</div><div class="h">Sat</div>
+            <div class="t">09:00</div>
+            <div class="slot busy" onclick="openBook()">Maria<br/>Cleaning</div>
+            <div class="slot"></div>
+            <div class="slot busy">Juan<br/>Filling</div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot busy">Ana R.<br/>Consult</div>
+            <div class="t">10:00</div>
+            <div class="slot"></div>
+            <div class="slot busy">Pedro<br/>X-ray</div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+          </div>
+          <p class="note">Conflict check: system blocks double-booking same dentist/chair.</p>
+        </section>
+
+        <!-- PATIENTS -->
+        <section class="screen" id="screen-patients">
+          <div class="screen-title">
+            <h2>Patients</h2>
+            <button type="button" class="btn primary">+ New patient</button>
+          </div>
+          <input class="search" type="search" placeholder="Search name / phone / ID…" value="Santos" />
+          <table style="margin:12px 0">
+            <thead>
+              <tr><th>Name</th><th>Phone</th><th>Last visit</th><th>Balance</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Santos, Maria</strong> · P-1042</td>
+                <td>0917 123 4567</td>
+                <td>Jul 01, 2026</td>
+                <td>₱0</td>
+              </tr>
+              <tr>
+                <td>Dela Cruz, Juan</td>
+                <td>0918 555 0101</td>
+                <td>Jun 20, 2026</td>
+                <td><span class="badge warn">₱1,500</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 style="font-size:15px;margin:16px 0 8px">Patient record — Maria Santos · 32F · P-1042</h3>
+          <div class="tabs" id="patientTabs">
+            <button type="button" class="on" data-tab="profile" onclick="switchTab(event,'profile')">Profile</button>
+            <button type="button" data-tab="chart" onclick="switchTab(event,'chart')">Dental chart</button>
+            <button type="button" data-tab="visits" onclick="switchTab(event,'visits')">Visits</button>
+            <button type="button" data-tab="files" onclick="switchTab(event,'files')">Files</button>
+            <button type="button" data-tab="patrx" onclick="switchTab(event,'patrx')">Rx history</button>
+            <button type="button" data-tab="patbill" onclick="switchTab(event,'patbill')">Billing</button>
+          </div>
+          <div class="tab-panel on" id="tab-profile">
+            <div class="row">
+              <div class="field"><label>Address</label><div class="box">123 Mabini St, Quezon City</div></div>
+              <div class="field"><label>Emergency contact</label><div class="box">Pedro Santos — 0917 000 1111</div></div>
+            </div>
+            <div class="field"><label>Allergies / medical notes</label><div class="box">Allergic to penicillin. No HPN/DM.</div></div>
+          </div>
+          <div class="tab-panel" id="tab-chart">
+            <p class="wf-only">Simple odontogram — click a tooth to annotate (demo).</p>
+            <div class="odontogram" id="odonto">
+              <div>Upper: <span>18</span><span>17</span><span class="marked">16</span><span>15</span><span>14</span><span>13</span><span>12</span><span>11</span> | <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span></div>
+              <div>Lower: <span>48</span><span>47</span><span>46</span><span>45</span><span>44</span><span>43</span><span>42</span><span>41</span> | <span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span></div>
+            </div>
+            <p class="note">Tooth 16: Composite filling (2025). Watch for secondary caries.</p>
+          </div>
+          <div class="tab-panel" id="tab-visits">
+            <div class="field"><label>Chief complaint</label><textarea readonly>Sensitivity on upper right when drinking cold water.</textarea></div>
+            <div class="field" style="margin-top:8px"><label>Treatment done / plan</label><textarea readonly>Exam + cleaning. Advised desensitizing toothpaste. Recheck in 6 months.</textarea></div>
+          </div>
+          <div class="tab-panel" id="tab-files">
+            <table>
+              <tr><th>File</th><th>Date</th><th></th></tr>
+              <tr><td>xray-16-2025.jpg</td><td>Nov 12, 2025</td><td><span class="badge">Spaces</span></td></tr>
+              <tr><td>consent-cleaning.pdf</td><td>Jul 01, 2026</td><td><span class="badge">Spaces</span></td></tr>
+            </table>
+            <button type="button" class="btn" style="margin-top:8px">Upload file…</button>
+          </div>
+          <div class="tab-panel" id="tab-patrx">
+            <p>Amoxicillin 500mg TID × 7 days — Doc Shelay — Jul 01, 2026</p>
+            <button type="button" class="btn dentist-only" onclick="showScreen('rx')">+ New Rx</button>
+          </div>
+          <div class="tab-panel" id="tab-patbill">
+            <p>No outstanding balance. Last invoice INV-0880 · ₱1,800 · Paid (GCash).</p>
+          </div>
+        </section>
+
+        <!-- BILLING -->
+        <section class="screen" id="screen-billing">
+          <div class="screen-title">
+            <h2>Billing</h2>
+            <button type="button" class="btn primary">+ New invoice</button>
+          </div>
+          <table>
+            <thead>
+              <tr><th>Invoice</th><th>Patient</th><th>Date</th><th>Total</th><th>Paid</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>INV-0891</td><td>M. Santos</td><td>Jul 11</td>
+                <td>₱2,500</td><td>₱2,500</td>
+                <td><span class="badge ok">Paid</span></td>
+              </tr>
+              <tr>
+                <td><strong>INV-0890</strong></td><td>J. Dela Cruz</td><td>Jul 10</td>
+                <td>₱4,000</td><td>₱2,500</td>
+                <td><span class="badge warn">Partial</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 style="font-size:14px;margin:16px 0 8px">Invoice detail — INV-0890</h3>
+          <table>
+            <tr><td>Composite filling ×1</td><td style="text-align:right">₱3,500</td></tr>
+            <tr><td>Consultation</td><td style="text-align:right">₱500</td></tr>
+            <tr><td><strong>Total</strong></td><td style="text-align:right"><strong>₱4,000</strong></td></tr>
+          </table>
+          <p class="note">Payments: GCash ₱2,500 (Jul 10, Ref: GC-99812). Balance <strong>₱1,500</strong>.</p>
+          <div class="row">
+            <div class="field"><label>Record payment method</label>
+              <select><option>Cash</option><option selected>GCash</option><option>Bank transfer</option><option>Card</option></select>
+            </div>
+            <div class="field"><label>Amount (₱)</label><input value="1500" /></div>
+            <div class="field"><label>Reference #</label><input placeholder="Optional" /></div>
+          </div>
+          <div class="row">
+            <button type="button" class="btn primary">Record payment</button>
+            <button type="button" class="btn">Print / PDF receipt</button>
+            <button type="button" class="btn">Email receipt</button>
+          </div>
+        </section>
+
+        <!-- RX -->
+        <section class="screen" id="screen-rx">
+          <div class="screen-title">
+            <h2>New prescription</h2>
+            <span class="badge dentist-only">Dentist only</span>
+          </div>
+          <div class="reception-block" id="rxBlocked" style="display:none;padding:20px;border:1px dashed var(--line);text-align:center">
+            <p><strong>Reception cannot create or edit prescriptions.</strong></p>
+            <p class="wf-only">Switch View as → Dentist to see this screen.</p>
+          </div>
+          <div id="rxForm">
+            <div class="row">
+              <div class="field"><label>Patient</label><div class="box">Maria Santos (P-1042)</div></div>
+              <div class="field"><label>Linked visit</label><div class="box">Jul 11, 2026</div></div>
+            </div>
+            <table>
+              <thead><tr><th>Drug</th><th>Dose</th><th>Freq</th><th>Days</th><th>Qty</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Amoxicillin</td><td>500mg</td><td>TID</td><td>7</td><td>21</td>
+                </tr>
+                <tr>
+                  <td>Ibuprofen</td><td>400mg</td><td>PRN pain</td><td>3</td><td>9</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="field" style="margin-top:10px">
+              <label>Instructions</label>
+              <textarea>Take after meals. Complete the full course of antibiotics.</textarea>
+            </div>
+            <p>Prescriber: <strong>Doc Shelay</strong></p>
+            <div class="row">
+              <button type="button" class="btn primary">Save</button>
+              <button type="button" class="btn">Print / PDF</button>
+              <button type="button" class="btn">Email to patient</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- REMINDERS -->
+        <section class="screen" id="screen-reminders">
+          <div class="screen-title">
+            <h2>Appointment reminders</h2>
+          </div>
+          <label style="display:block;margin-bottom:8px;font-size:13px"><input type="checkbox" checked /> Email — 48 hours before</label>
+          <label style="display:block;margin-bottom:12px;font-size:13px"><input type="checkbox" /> Same-day morning email</label>
+          <div class="field">
+            <label>Email template (Taglish)</label>
+            <textarea>Hi {name}!
+
+Reminder: may dental appointment ka on {date} at {time} sa DT Smile Dental Clinic.
+
+Kung kailangan i-reschedule, email or call {phone}.
+
+Salamat!
+Doc Shelay
+DT Smile Dental Clinic</textarea>
+          </div>
+          <p class="note">Email only — no SMS. Patient needs an email on file to receive reminders.</p>
+          <button type="button" class="btn primary dentist-only">Save settings</button>
+        </section>
+
+        <!-- REPORTS -->
+        <section class="screen" id="screen-reports">
+          <div class="screen-title">
+            <h2>Reports</h2>
+            <select style="width:auto"><option>This month</option><option>This week</option><option>Custom…</option></select>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="n">142</div><div class="l">Patients seen</div></div>
+            <div class="stat"><div class="n">186</div><div class="l">Appointments</div></div>
+            <div class="stat"><div class="n">₱185k</div><div class="l">Revenue</div></div>
+            <div class="stat"><div class="n">8%</div><div class="l">No-show rate</div></div>
+          </div>
+          <div class="split">
+            <div>
+              <h3 style="font-size:13px">Revenue by service</h3>
+              <table>
+                <tr><td>Cleaning</td><td>₱62,000</td></tr>
+                <tr><td>Filling</td><td>₱71,000</td></tr>
+                <tr><td>Extraction</td><td>₱28,000</td></tr>
+                <tr><td>Consultation</td><td>₱24,000</td></tr>
+              </table>
+            </div>
+            <div>
+              <h3 style="font-size:13px">Outstanding balances</h3>
+              <table>
+                <tr><td>J. Dela Cruz</td><td>₱1,500</td></tr>
+                <tr><td>L. Gomez</td><td>₱800</td></tr>
+                <tr><td>R. Lim</td><td>₱2,000</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <button type="button" class="btn">Export CSV</button>
+            <button type="button" class="btn">Export PDF</button>
+          </div>
+        </section>
+
+        <!-- USERS -->
+        <section class="screen" id="screen-users">
+          <div class="screen-title">
+            <h2>Users &amp; access</h2>
+            <span class="badge">Dentist only</span>
+          </div>
+          <div class="reception-block" id="usersBlocked" style="display:none;padding:20px;border:1px dashed var(--line);text-align:center">
+            <p><strong>Only the dentist/admin can manage users.</strong></p>
+          </div>
+          <div id="usersForm">
+            <table>
+              <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Doc Shelay</td><td>docshelay@dtsmile.ph</td><td>Dentist</td><td><span class="badge ok">Active</span></td></tr>
+                <tr><td>Mia Lopez</td><td>mia@dtsmile.ph</td><td>Reception</td><td><span class="badge ok">Active</span></td></tr>
+              </tbody>
+            </table>
+            <button type="button" class="btn primary" style="margin-top:12px">+ Invite user</button>
+            <p class="note">Reception: appointments, patients, billing. No Rx edit, no user admin.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Book modal -->
+  <div class="modal-backdrop" id="bookModal" onclick="backdropClose(event)">
+    <div class="modal" role="dialog" aria-labelledby="bookTitle">
+      <h3 id="bookTitle">Book appointment</h3>
+      <div class="field" style="margin-bottom:8px"><label>Patient</label><input value="Search / New patient…" /></div>
+      <div class="row">
+        <div class="field"><label>Date</label><input value="2026-07-11" /></div>
+        <div class="field"><label>Time</label><input value="10:00" /></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Dentist</label><select><option>Doc Shelay</option></select></div>
+        <div class="field"><label>Chair</label><select><option>Chair 1</option></select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Service</label><select><option>Cleaning</option><option>Filling</option><option>Consultation</option></select></div>
+        <div class="field"><label>Duration</label><div class="box">30 min</div></div>
+      </div>
+      <div class="field"><label>Notes</label><textarea placeholder="Optional"></textarea></div>
+      <label style="font-size:12px;display:block;margin-top:8px"><input type="checkbox" checked /> Notify via Email</label>
+      <div class="modal-actions">
+        <button type="button" class="btn" onclick="closeBook()">Cancel</button>
+        <button type="button" class="btn primary" onclick="closeBook()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let role = 'dentist';
+
+    const DOC_FILES = [
+      {
+        path: '../documentation/01-DT-Smile-Proposal-Overview.docx',
+        filename: '01-DT-Smile-Proposal-Overview.docx'
+      },
+      {
+        path: '../documentation/02-DT-Smile-System-Specification.docx',
+        filename: '02-DT-Smile-System-Specification.docx'
+      }
+    ];
+
+    function triggerFileDownload(blob, filename) {
+      // Force a Save download (never navigate to / open the file in the browser)
+      const file = new Blob([blob], { type: 'application/octet-stream' });
+      const url = URL.createObjectURL(file);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    async function downloadDocumentation() {
+      const btn = document.getElementById('btnDownloadDocs');
+      btn.disabled = true;
+      btn.textContent = 'Downloading…';
+
+      let ok = 0;
+      for (let i = 0; i < DOC_FILES.length; i++) {
+        const doc = DOC_FILES[i];
+        try {
+          const res = await fetch(doc.path, { cache: 'no-store' });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const blob = await res.blob();
+          triggerFileDownload(blob, doc.filename);
+          ok += 1;
+        } catch (err) {
+          console.error('Download failed:', doc.filename, err);
+        }
+        if (i < DOC_FILES.length - 1) {
+          await new Promise(r => setTimeout(r, 300));
+        }
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Download documentation';
+
+      if (ok === 0) {
+        alert(
+          'Downloads need the page to be served from this Git repository (GitHub Pages, Netlify, or a local server)—not opened as a raw file:// path.\n\n' +
+          'After push, open the hosted wireframe and click again to save:\n' +
+          '• 01-DT-Smile-Proposal-Overview.docx\n' +
+          '• 02-DT-Smile-System-Specification.docx'
+        );
+      }
+    }
+
+    function setRole(r) {
+      role = r;
+      document.getElementById('roleDentist').classList.toggle('active', r === 'dentist');
+      document.getElementById('roleReception').classList.toggle('active', r === 'reception');
+      document.getElementById('userChip').textContent =
+        r === 'dentist' ? 'Doc Shelay (Dentist)' : 'Mia Lopez (Reception)';
+
+      const dentistOnly = r === 'dentist';
+      document.getElementById('navUsers').disabled = !dentistOnly;
+      document.getElementById('navUsersLink').style.display = dentistOnly ? '' : 'none';
+      document.getElementById('navRxLink').style.opacity = dentistOnly ? '1' : '0.45';
+
+      document.getElementById('rxBlocked').style.display = dentistOnly ? 'none' : 'block';
+      document.getElementById('rxForm').style.display = dentistOnly ? 'block' : 'none';
+      document.getElementById('usersBlocked').style.display = dentistOnly ? 'none' : 'block';
+      document.getElementById('usersForm').style.display = dentistOnly ? 'block' : 'none';
+
+      document.querySelectorAll('.dentist-only').forEach(el => {
+        el.style.display = dentistOnly ? '' : 'none';
+      });
+
+      if (!dentistOnly && (document.getElementById('screen-users').classList.contains('active'))) {
+        showScreen('dashboard');
+      }
+    }
+
+    function showScreen(id) {
+      if (id === 'users' && role !== 'dentist') {
+        alert('Users screen is Dentist-only in this wireframe.');
+        return false;
+      }
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('screen-' + id).classList.add('active');
+      document.querySelectorAll('.sidenav button').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-screen') === id);
+      });
+      highlightAppNav(id);
+      const chrome = document.getElementById('appChrome');
+      chrome.style.display = id === 'login' ? 'none' : 'flex';
+      window.scrollTo(0, 0);
+      return false;
+    }
+
+    function go(id) {
+      showScreen(id);
+      return false;
+    }
+
+    function highlightAppNav(id) {
+      const map = {
+        dashboard: 'nav-dash',
+        appointments: 'nav-appt',
+        patients: 'nav-pat',
+        billing: 'nav-bill',
+        rx: 'nav-rx',
+        reports: 'nav-rep',
+        reminders: 'nav-rem',
+        users: 'nav-usr'
+      };
+      document.querySelectorAll('.app-nav a').forEach(a => a.classList.remove('on'));
+      const cls = map[id];
+      if (cls) {
+        const el = document.querySelector('.' + cls);
+        if (el) el.classList.add('on');
+      }
+    }
+
+    function switchTab(ev, name) {
+      document.querySelectorAll('#patientTabs button').forEach(b => b.classList.remove('on'));
+      ev.currentTarget.classList.add('on');
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'));
+      document.getElementById('tab-' + name).classList.add('on');
+    }
+
+    function openBook() {
+      document.getElementById('bookModal').classList.add('show');
+    }
+    function closeBook() {
+      document.getElementById('bookModal').classList.remove('show');
+    }
+    function backdropClose(e) {
+      if (e.target.id === 'bookModal') closeBook();
+    }
+
+    document.getElementById('odonto').addEventListener('click', function (e) {
+      if (e.target.tagName === 'SPAN') e.target.classList.toggle('marked');
+    });
+
+    // Start on login with chrome hidden
+    document.getElementById('appChrome').style.display = 'none';
+    setRole('dentist');
+  </script>
+</body>
+</html>

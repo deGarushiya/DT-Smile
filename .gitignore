@@ -1,0 +1,9 @@
+# Local archives (folder already tracked)
+*.zip
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.tmp
+*.swp
+.vscode/
+.idea/
